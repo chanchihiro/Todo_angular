@@ -37,7 +37,7 @@ var Todo = angular.module("myTodo",[]);
 			var length = todos.length;
 
 			$scope.allCount = length;
-			$scope.doneCount = where(todos,$scope.filter.remaining).length;
+			$scope.doneCount = where(todos,$scope.filter.done).length;
 			$scope.remainingCount = length - $scope.doneCount;
 		},true);
 
@@ -55,6 +55,22 @@ var Todo = angular.module("myTodo",[]);
 		//編集の確定
 		$scope.doneEdit = function(){
 			$scope.editing = null;
+		};
+
+
+		//全て完了か未完
+		$scope.allCheck =function(){
+			var state = !!$scope.remainingCount;
+
+			angular.forEach($scope.todos,function(todo){
+				todo.done = state;
+			});
+		};
+
+
+		//完了したTodoを削除
+		$scope.removeDoneTodo = function(){
+			$scope.todos = where($scope.todos,$scope.filter.remaining);
 		};
 
 	}])
