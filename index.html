@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="myTodo">
+<head>
+	<meta charset="UTF-8">
+	<title>To do アプリ</title>
+	<link rel="stylesheet" type="text/css" href="todo.css">
+	<script src="angular.min.js"></script>
+	<script src="todo.js"></script>
+</head>
+<body>
+
+
+<div ng-controller="MainController">
+	
+	<h1>To Do</h1><hr>
+
+
+
+	<form ng-submit="addTodo()">
+		<input type="text" required placeholder="ここにTodoを記入" ng-model="newTitle">
+		<button type="submit" >追加</button>
+	</form>
+	<hr>
+
+	<div class="btn">
+		<button>全て完了/未完</button>
+		<button ng-click="changeFilter()" ng-class="{active : !currentFilter}">全部<span>{{allCount}}</span></button>
+		<button ng-click="changeFilter(filter.remaining)" ng-class="{active: currentFilter ==filter.remaining}">未完<span>{{doneCount}}</span></button>
+		<button ng-click="changeFilter(filter.done)" ng-class="{active : currentFilter ==fiter.done}">完了<span>{{remainingCount}}</span></button>
+		<button>完了イテムを全て削除</button>
+	</div>
+
+
+<!-- 未完のTodo -->
+	<li class="todo-item" ng-repeat="todo in todos | filter:currentFilter" ng-class="{done : todo.done, editing : todo == editing}">
+		<form ng-submit="doneEdit(todoForm)">
+			<input type="checkbox" ng-model="todo.done">
+			<span class="todo-title" ng-dblclick="editTodo(todo)" ng-hide="todo == editing">{{todo.title}}</span>
+			<input type="text" required ng-model="todo.title" ng-show="todo == editing" my-select="todo == editing" ng-blur="doneEdit(todoForm)">
+			<button type="reset" ng-if="todo != editing">削除</button>
+		</form>
+	</li>
+
+<!-- 完了のTodo -->
+<!-- 	<li class="todo-item done">
+		<form>
+			<input type="checkbox">
+			<span class="todo-title">完了のTodo</span>
+			<button type="reset">削除</button>
+		</form>
+	</li> -->
+
+<!-- 編集中のToDo -->
+<!-- 	<li class="todo-item editing">
+		<form action="">
+			<input type="checkbox">
+			<input type="text" required value="編集中の ToDo">
+		</form>
+	</li>
+ -->
+
+<pre>{{todos}}</pre>
+
+
+</div>
+
+
+
+
+
+
+</body>
+</html>
