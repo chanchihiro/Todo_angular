@@ -73,6 +73,9 @@ var Todo = angular.module("myTodo",[]);
 			$scope.todos = where($scope.todos,$scope.filter.remaining);
 		};
 
+
+		
+
 	}])
 
 //ディレクティブの作成

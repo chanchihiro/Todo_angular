@@ -27,7 +27,7 @@
 		<button ng-click="changeFilter()" ng-class="{active : !currentFilter}">全部<span>{{allCount}}</span></button>
 		<button ng-click="changeFilter(filter.remaining)" ng-class="{active: currentFilter ==filter.remaining}">未完<span>{{remainingCount}}</span></button>
 		<button ng-click="changeFilter(filter.done)" ng-class="{active : currentFilter ==fiter.done}">完了<span>{{doneCount}}</span></button>
-		<button ng-click="removeDoneTodo">完了イテムを全て削除</button>
+		<button ng-click="removeDoneTodo()">完了イテムを全て削除</button>
 	</div>
 
 
