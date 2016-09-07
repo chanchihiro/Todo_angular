@@ -74,7 +74,12 @@ var Todo = angular.module("myTodo",[]);
 		};
 
 
-		
+		//特定のTodoを削除
+		$scope.removeTodo = function(currentTodo){
+			$scope.todos = where($scope.todos,function(todo){
+				return currentTodo !== todo;
+			});
+		};
 
 	}])
 

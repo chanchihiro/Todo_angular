@@ -37,7 +37,7 @@
 			<input type="checkbox" ng-model="todo.done">
 			<span class="todo-title" ng-dblclick="editTodo(todo)" ng-hide="todo == editing">{{todo.title}}</span>
 			<input type="text" required ng-model="todo.title" ng-show="todo == editing" my-select="todo == editing" ng-blur="doneEdit(todoForm)">
-			<button type="reset" ng-if="todo != editing">削除</button>
+			<button type="reset" ng-if="todo !== editing" ng-click="removeTodo()">削除</button>
 		</form>
 	</li>
 
